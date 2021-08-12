@@ -34,14 +34,14 @@ export class TodoList {
             }
         } 
     }
+    
     eliminarCompletados(){
         this.todos= this.todos.filter(todo=>!todo.completado); 
 		this.guardarLocalStorage();
     }
     
    guardarLocalStorage(){
-
-       localStorage.setItem('todo', JSON.stringify(this.todos));
+    localStorage.setItem('todo', JSON.stringify(this.todos));
     }
 
     cargarLocalStorage(){

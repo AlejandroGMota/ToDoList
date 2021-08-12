@@ -1,4 +1,4 @@
-import { Todo } from "../classes";
+import { Todo, TodoList } from "../classes";
 import { todoList } from "../index";
 
 //referencia HTML
@@ -57,8 +57,8 @@ divTodoList.addEventListener('click', (evento) => {
 
 btnBorrar.addEventListener('click', ()=>{
 
-			for (let i=divTodoList.children.length-1;i>=0; i--){
-		
+		todoList.eliminarCompletados();
+		for (let i=divTodoList.children.length-1;i>=0; i--){
 		const e= divTodoList.children[i];
 		if(e.classList.contains('completed')){
 			divTodoList.removeChild(e);     
