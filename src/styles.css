@@ -23,7 +23,7 @@ button {
 body {
 	font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	line-height: 1.4em;
-	background: #e0fff3;
+	background: #879bcb67;
 	color: #111111;
 	min-width: 230px;
 	max-width: 550px;
@@ -70,13 +70,14 @@ body {
 .todoapp h1 {
 	position: absolute;
 	font-family:'Times New Roman', Times, serif;
+	text-shadow: 0.02em 0.02em rgba(130, 131, 168, 0.74);
 	top: -77px;
 	width: 100%;
 	font-size: 65px;
 	margin: 0px;
 	font-weight: 200;
 	text-align: center;
-	color: #6370dd;
+	color: #5968ee;
 	-webkit-text-rendering: optimizeLegibility;
 	-moz-text-rendering: optimizeLegibility;
 	text-rendering: optimizeLegibility;
