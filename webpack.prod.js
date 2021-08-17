@@ -61,7 +61,7 @@ module.exports = {
             filename: './index.html',
             thunks: ['index'],
             title: 'Webpack app',
-            favicon: './src/assets/img/icon-web.png'
+            favicon: './src/icon-web.png'
         }),
         new MiniCssExtract({
             filename: '[name].[fullhash].css',
@@ -70,8 +70,7 @@ module.exports = {
         new CopyPlugin({
             patterns:[
                 {from:'src/assets/', to:'assets/'}
-            ]
-            
+            ]            
         }),
     ]
     
