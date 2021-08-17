@@ -45,6 +45,9 @@ module.exports = {
             },
         ]
     },
+    entry: {
+        index: "./src/index.js",
+    },
     optimization:{
         minimize: true,
         minimizer:[
@@ -56,7 +59,9 @@ module.exports = {
         new HtmlWebPackPlugin({
             template: './src/index.html',
             filename: './index.html',
+            thunks: ['index'],
             title: 'Webpack app',
+            favicon: './src/assets/img/icon-web.png'
         }),
         new MiniCssExtract({
             filename: '[name].[fullhash].css',
