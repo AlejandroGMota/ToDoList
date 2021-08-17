@@ -3,7 +3,7 @@ const MiniCssExtract = require('mini-css-extract-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
- 
+    
     mode: 'development',
     output:{
         clean:true
@@ -32,11 +32,22 @@ module.exports = {
             },
         ]
     },
+    entry: {
+        index: "./app/index.js",
+        login: "./app/login.js",
+        vendor: [
+            'react',
+            'react-dom',
+            'react-router-dom',
+            'antd'
+        ]
+    },
     plugins: [
         new HtmlWebPackPlugin({
             template: './src/index.html',
             filename: './index.html',
             title: 'Webpack app',
+            favicon: './src/img/icon-web.png'
         }),
         new MiniCssExtract({
             filename: 'styles.css',
