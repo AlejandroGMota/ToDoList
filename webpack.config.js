@@ -33,21 +33,15 @@ module.exports = {
         ]
     },
     entry: {
-        index: "./app/index.js",
-        login: "./app/login.js",
-        vendor: [
-            'react',
-            'react-dom',
-            'react-router-dom',
-            'antd'
-        ]
+        index: "./src/index.js",
     },
     plugins: [
         new HtmlWebPackPlugin({
             template: './src/index.html',
             filename: './index.html',
+            thunks: ['index'],
             title: 'Webpack app',
-            favicon: './src/img/icon-web.png'
+            favicon: './src/assets/img/icon-web.png'
         }),
         new MiniCssExtract({
             filename: 'styles.css',
