@@ -7,13 +7,15 @@ const txtInput = document.querySelector('.new-todo');
 const btnBorrar = document.querySelector('.clear-completed');
 const ulFiltros = document.querySelector('.filters');
 const anchorFiltros = document.querySelectorAll('.filtro');
+const fecha = document.querySelector('#Conclusion-de-actividad');
 
 export const crearTodoHtml = (todo) => { 
+	compararFecha(todo)
 	   const htmlTodo = `
 	   <li class="${(todo.completado)?'completed': ''}" data-id="${todo.id}">
 		<div class="view">
 			<input class="toggle" type=" ${ (todo.completado)?'checked': ''}" checked>
-			<label>${todo.tarea}</label>
+            <label style=" display: flex;justify-content: space-between; "> ${todo.tarea} <small style="font-size: 15px; display: flex; align-items: center; margin-right: 35px;">Termina: <date> ${todo.finishDate}</date></small></label>
 			<button class="destroy"></button>
 		</div>
 		<input class="edit" value="Create a TodoMVC template">
@@ -29,18 +31,22 @@ export const crearTodoHtml = (todo) => {
 
 //eventos
 txtInput.addEventListener('keyup', (evento) => {
-	if (evento.keyCode === 13 && txtInput.value.length > 0){
-		const nuevoTodo = new Todo(txtInput.value);  
+	if (evento.keyCode === 13 && txtInput.value.length > 0 && fecha.value.length > 0){
+        const nuevoTodo = new Todo(txtInput.value, fecha.value);
 		todoList.nuevoTodo(nuevoTodo);
-    	
 		crearTodoHtml(nuevoTodo);    
+
 		txtInput.value = '';
+		fecha.value = '';
 		todoList.countPendientes();
-	}
+	}	else if (evento.keyCode === 13) {
+        alert('Recuerde llenar correctamente la fecha y tarea')
+		todoList.countPendientes();
+    }
 })
 
 divTodoList.addEventListener('click', (evento) => {
-	//obtiene un input, button o label
+
 	const nombreElemento = evento.target.localName;
 	const todoElemento = evento.target.parentElement.parentElement;
 	const todoId = todoElemento.getAttribute('data-id');
@@ -52,6 +58,7 @@ divTodoList.addEventListener('click', (evento) => {
 	}else if (nombreElemento.includes('button')){
 		todoList.eliminarTodo(todoId);
 		divTodoList.removeChild(todoElemento);
+		todoList.countPendientes(); //test
 	}
 })
 
@@ -93,5 +100,15 @@ btnBorrar.addEventListener('click', ()=>{
 		}
 	}
 });
+//fecha
+function compararFecha(todo) {
+    let finishDate = new Date(todo.finishDate),
+        fechaActual = new Date();
 
-//destroyButton.addEventListener('click', ()=>{console.log('ya casii')})
+
+
+    if (finishDate <= fechaActual) {
+        console.log(todo);
+        todo.completado = true;
+    }
+}
